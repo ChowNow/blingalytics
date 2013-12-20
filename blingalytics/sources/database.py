@@ -50,6 +50,15 @@ from sqlalchemy.sql import cast, func
 from blingalytics import sources
 from blingalytics.utils.collections import OrderedDict
 
+session = elixir.session
+
+try:
+    from util.database import ReportSession
+    if session:
+        session = ReportSession()
+except ImportError:
+    pass
+
 
 QUERY_LIMIT = 250
 
@@ -127,7 +136,7 @@ class DatabaseSource(sources.Source):
             columns = map(lambda column: column.lookup_attr, columns)
 
             # Construct the bulked query
-            q = elixir.session.query(pk_attr, *columns)
+            q = session.query(pk_attr, *columns)
             q = q.filter(pk_attr.in_(pk_column_ids))
             lookup_values = dict(map(
                 lambda row: (row[0], dict(zip(names, row[1:]))),
@@ -183,7 +192,7 @@ class DatabaseSource(sources.Source):
                 query_group_bys += column.get_query_group_bys(entity)
 
             # Construct the query
-            q = elixir.session.query(*query_columns)
+            q = session.query(*query_columns)
             for query_filter in itertools.chain(table_wide_filters, query_filters):
                 query_modifiers += query_filter.get_query_modifiers(entity, clean_inputs)
                 filter_arg = query_filter.get_filter(entity, clean_inputs)
@@ -662,7 +671,7 @@ class TableKeyRange(sources.KeyRange):
 
     def get_row_keys(self, clean_inputs):
         # Query for the primary keys
-        q = elixir.session.query(self.pk_column)
+        q = session.query(self.pk_column)
 
         # Apply the filters to the query
         for query_filter in self.filters:
