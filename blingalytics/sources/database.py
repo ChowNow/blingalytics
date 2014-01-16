@@ -54,8 +54,8 @@ session = elixir.session
 
 try:
     from util.database import ReportSession
-    if session:
-        session = ReportSession()
+    if ReportSession:
+        session = ReportSession
 except ImportError:
     pass
 
