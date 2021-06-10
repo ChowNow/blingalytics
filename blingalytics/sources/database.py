@@ -57,7 +57,7 @@ from blingalytics.utils.collections import OrderedDict
 
 QUERY_LIMIT = 250
 
-
+# Constantize elixir.session to make it flexible to patch by the caller as needed
 db_session = elixir.session
 
 
