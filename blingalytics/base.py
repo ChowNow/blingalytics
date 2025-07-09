@@ -18,7 +18,6 @@ how to pull data; :doc:`/formats` for more on formatting report output; and
 :doc:`/widgets` for details on accepting user filtering options.
 """
 
-from __future__ import absolute_import
 from builtins import zip
 from builtins import object
 import copy
@@ -28,7 +27,7 @@ import itertools
 import re
 
 from blingalytics import sources, widgets
-from future.utils import with_metaclass
+
 
 
 DEFAULT_CACHE_TIME = 60 * 30
@@ -104,7 +103,7 @@ class ReportMeta(type):
                 return getattr(base, name)
         return default
 
-class Report(with_metaclass(ReportMeta, object)):
+class Report(object, metaclass=ReportMeta):
     """
     To write a report, you subclass this base Report class and define your own
     attributes on it. The standard list of available attributes include:

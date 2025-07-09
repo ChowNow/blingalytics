@@ -9,11 +9,9 @@ a simple dev environment.
     See :doc:`/install` for details.
 
 """
-
-from __future__ import absolute_import
 from builtins import map
 from builtins import zip
-from past.builtins import long, unicode
+
 
 from datetime import datetime
 from decimal import Decimal

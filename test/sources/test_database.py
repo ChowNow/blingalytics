@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from builtins import str
 from decimal import Decimal
 import unittest

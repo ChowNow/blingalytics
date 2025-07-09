@@ -22,8 +22,6 @@ documentation.
   attributes on the rendered widget. Defaults to no extra attributes.
 """
 
-from __future__ import absolute_import
-from past.builtins import basestring, cmp
 from builtins import object
 from datetime import date, datetime, timedelta
 
@@ -49,7 +47,7 @@ def mixed_type_cmp(obj, obj2):
         # Per Python 3's https://docs.python.org/3/whatsnew/3.0.html#ordering-comparisons we'll need to
         # handle exception when comparing incompatible types by return 0, a hacky way to tell the key
         # function to not sort
-        return cmp(obj, obj2)
+        return (obj > obj2) - (obj < obj2)
     except TypeError:
         return 0
 
@@ -70,7 +68,7 @@ class Widget(object):
         self.default = default
         self.required = required
         self._extra_attrs = extra_attrs
-        if isinstance(extra_class, basestring):
+        if isinstance(extra_class, str):
             self.extra_class = (extra_class,)
         else:
             self.extra_class = extra_class

@@ -1,9 +1,4 @@
-from __future__ import absolute_import
 from builtins import map
-from future import standard_library
-from past.builtins import long, unicode
-standard_library.install_aliases()
-
 
 import base64
 import itertools
@@ -39,12 +34,10 @@ def decode_dict(value):
 encodings = {
     type(None): lambda value: 'None',
     int: lambda value: 'i_' + str(value),
-    long: lambda value: 'i_' + str(value),
     float: lambda value: 'f_' + str(value),
     bool: lambda value: 'b_' + str(int(value)),
     Decimal: lambda value: 'd_' + str(value),
     str: lambda value: 'u_' + _escape(base64.encodebytes(value.encode()).decode()),
-    unicode: lambda value: 'u_' + _escape(base64.encodebytes(value.encode('utf-8')).decode()),
     datetime: lambda value: 't_%i.%06i'%(time.mktime(value.timetuple()), value.microsecond),
     date: lambda value: 'a_%i'%(time.mktime(value.timetuple())),
     tuple: lambda value: 'l_' + '_'.join([_escape(encode(a)) for a in value]),

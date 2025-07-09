@@ -47,12 +47,7 @@ to your report's :meth:`report_rows <blingalytics.base.Report.report_rows>`
 and :meth:`report_footer <blingalytics.base.Report.report_footer>` methods.
 See the docstring and code of the base ``Format`` class for more.
 """
-from __future__ import absolute_import
-from __future__ import division
 
-from builtins import str
-from past.builtins import basestring
-from past.utils import old_div
 from builtins import object
 import json
 import locale
@@ -114,7 +109,7 @@ class Format(object):
 
     def format(self, value):
         """Default format method simply stringifies the value."""
-        if isinstance(value, basestring):
+        if isinstance(value, str):
             return value.encode('utf-8')
         return str(value)
 
@@ -357,7 +352,7 @@ class Percent(Format):
     def format_xls(self, value):
         if value is None:
             value = 0
-        return old_div(value, 100)
+        return value / 100
 
 class String(Format):
     """
@@ -390,7 +385,7 @@ class String(Format):
     def format(self, value):
         if value is None:
             return ''
-        if isinstance(value, basestring):
+        if isinstance(value, str):
             value = value.encode('utf-8')
             if not isinstance(value, str):  # account for Python differentiation between str & bytes
                 value = str(value, 'utf-8')

@@ -49,15 +49,12 @@ all filters accept the following optional standard arguments:
   :doc:`/widgets` for more.
 """
 
-from __future__ import absolute_import
-from past.builtins import basestring, long
-from builtins import object
 from decimal import Decimal
 
 from blingalytics import formats
 
 
-ADD_TYPES = (int, long, Decimal, float)
+ADD_TYPES = (int, Decimal, float)
 
 class Source(object):
     """
@@ -203,7 +200,7 @@ class Filter(object):
     """
     def __init__(self, columns=None, widget=None):
         # Using frozensets for column lists so they can be used as dict keys
-        if isinstance(columns, basestring):
+        if isinstance(columns, str):
             self.columns = frozenset([columns])
         elif columns:
             self.columns = frozenset(columns)
@@ -236,7 +233,7 @@ class Column(object):
     implementations to define this column's specific functionality.
     
     By default, a column's footer functionality is simply a sum for types that
-    can be added, and blank for all other values. For int, long, Decimal, and
+    can be added, and blank for all other values. For int, Decimal, and
     float values, all the values returned from the source are totaled and
     returned for the footer.
     
