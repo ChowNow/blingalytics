@@ -184,7 +184,7 @@ class DatePicker(Widget):
             value = (datetime.utcnow() - timedelta(days=1)).strftime(self.date_format)
         elif value == 'first_of_month':
             value = datetime.utcnow().replace(day=1).strftime(self.date_format)
-        elif isinstance(value, basestring):
+        elif isinstance(value, str):
             value = datetime.strptime(value, self.date_format).strftime(self.date_format)
         elif isinstance(value, (date, datetime)):
             value = value.strftime(self.date_format)

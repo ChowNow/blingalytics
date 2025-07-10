@@ -475,7 +475,7 @@ class Func(DatabaseColumn):
     """
     def __init__(self, func_name, entity_column, **kwargs):
         self.func = func_name
-        if isinstance(self.func, basestring):
+        if isinstance(self.func, str):
             self.func = getattr(func, func_name)
         super(Func, self).__init__(entity_column, **kwargs)
 

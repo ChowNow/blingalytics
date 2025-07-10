@@ -310,7 +310,7 @@ def normalize_key_ranges(init_key_ranges):
     required to instantiate the KeyRange object, which will be automatically
     instantiated here.
     """
-    if len(init_key_ranges) and isinstance(init_key_ranges[0], basestring):
+    if len(init_key_ranges) and isinstance(init_key_ranges[0], str):
         init_key_ranges = [init_key_ranges]
     key_ranges = []
     for name, key_range in init_key_ranges:
