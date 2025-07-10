@@ -81,11 +81,9 @@ class RedisCache(caches.Cache):
                 data = {}
                 for name, value in list(row.items()):
                     t = type(value)
-                    if t is unicode:
-                        data[name] = value.encode('utf-8')
-                    elif t is Decimal:
+                    if t is Decimal:
                         data[name] = float(value)
-                    elif t in (int, float, long, str):
+                    elif t in (int, float, str):
                         data[name] = value
                     else:
                         data[name] = str(value)
