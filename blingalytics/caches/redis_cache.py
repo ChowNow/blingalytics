@@ -9,11 +9,9 @@ a simple dev environment.
     See :doc:`/install` for details.
 
 """
-
-from __future__ import absolute_import
 from builtins import map
 from builtins import zip
-from past.builtins import long, unicode
+
 
 from datetime import datetime
 from decimal import Decimal
@@ -83,11 +81,9 @@ class RedisCache(caches.Cache):
                 data = {}
                 for name, value in list(row.items()):
                     t = type(value)
-                    if t is unicode:
-                        data[name] = value.encode('utf-8')
-                    elif t is Decimal:
+                    if t is Decimal:
                         data[name] = float(value)
-                    elif t in (int, float, long, str):
+                    elif t in (int, float, str):
                         data[name] = value
                     else:
                         data[name] = str(value)

@@ -1,6 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from past.utils import old_div
 from datetime import date, datetime, timedelta
 import time
 
@@ -15,9 +12,7 @@ def datetime_to_hours(dt):
         dt = datetime(dt.year, dt.month, dt.day)
     if dt.tzinfo:
         dt = timezones.unlocalize(dt)
-    delta = dt - EPOCH
-    hours = (delta.days * 24) + (old_div(delta.seconds, 3600))
-    return hours
+    return (dt - EPOCH).total_seconds() / 3600
 
 def hours_to_datetime(hours):
     return EPOCH + timedelta(hours=hours)

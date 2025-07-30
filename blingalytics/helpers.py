@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-from builtins import str
 import json
 
 from blingalytics import get_report_by_code_name

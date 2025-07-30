@@ -40,9 +40,8 @@ extra report attribute to specify which table to pull the data from:
 
 """
 
-from __future__ import absolute_import
 from builtins import zip
-from past.builtins import basestring
+
 from builtins import object
 from collections import defaultdict
 import heapq
@@ -363,7 +362,7 @@ class DatabaseColumn(sources.Column):
 
     def resolve_entity_column(self, entity):
         column = self.entity_column
-        if isinstance(column, basestring):
+        if isinstance(column, str):
             column = getattr(entity, self.entity_column)
         elif isinstance(column, DatabaseColumn):
             column = column.get_query_column(entity)
@@ -476,7 +475,7 @@ class Func(DatabaseColumn):
     """
     def __init__(self, func_name, entity_column, **kwargs):
         self.func = func_name
-        if isinstance(self.func, basestring):
+        if isinstance(self.func, str):
             self.func = getattr(func, func_name)
         super(Func, self).__init__(entity_column, **kwargs)
 

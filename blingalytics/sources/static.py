@@ -5,7 +5,6 @@ For example, if you want to fill a column with a 'coming soon...' message, you
 could use a static column.
 """
 
-from __future__ import absolute_import
 from blingalytics import sources
 
 
