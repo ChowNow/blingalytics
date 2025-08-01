@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 
 long_description = '''
@@ -53,6 +53,7 @@ setup(
         'Environment :: Web Environment',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.11',
         'License :: OSI Approved :: MIT License',
         'Topic :: Office/Business',
         'Topic :: Internet :: WWW/HTTP',
