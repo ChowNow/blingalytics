@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 
 long_description = '''
@@ -31,7 +31,7 @@ open-source project. Blingalytics is released under the `MIT License`_.
 
 setup(
     name='Blingalytics',
-    version='v1.0.0chownow',
+    version='1.0.1',
     author='Jeff Schenck',
     author_email='jmschenck@gmail.com',
     url='http://github.com/jeffschenck/blingalytics',
@@ -53,6 +53,7 @@ setup(
         'Environment :: Web Environment',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.11',
         'License :: OSI Approved :: MIT License',
         'Topic :: Office/Business',
         'Topic :: Internet :: WWW/HTTP',
